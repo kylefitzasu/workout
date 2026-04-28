@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12-Week Tone & Sculpt – Chest Focus Home Gym Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f5f0;
+    --dark: #1a1a1a;
+    --c1: #7EB8A4;
+    --c2: #D4A76A;
+    --c3: #C97B6E;
+    --warm-green: #4a9a80;
+    --warm-green-light: #f0faf6;
+    --warm-green-border: #d4ede5;
+    --border: #e8e5e0;
+    --text-muted: #777;
+    --text-mid: #444;
+  }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  #site-header {
+    background: var(--dark);
+    color: #f7f5f0;
+    padding: 32px 24px 26px;
+    text-align: center;
+    border-bottom: 4px solid var(--c1);
+    transition: border-color 0.3s;
+  }
+  #site-header .eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: #aaa; margin-bottom: 8px;
+  }
+  #site-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px; font-weight: 900; letter-spacing: -0.5px;
+  }
+  #site-header .subtitle {
+    margin-top: 8px; font-size: 13px; color: #bbb; letter-spacing: 1px;
+  }
+
+  /* PHASE TABS */
+  #phase-tabs { display: flex; border-bottom: 2px solid var(--border); }
+  .phase-tab {
+    flex: 1; padding: 14px 8px; border: none; cursor: pointer;
+    background: var(--bg); border-bottom: 3px solid transparent;
+    font-family: 'Source Serif 4', serif; font-size: 13px; color: #777;
+    transition: all 0.2s; line-height: 1.4;
+  }
+  .phase-tab.active { font-weight: 600; color: var(--dark); }
+  .phase-tab .phase-label {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .phase-tab .phase-weeks { font-size: 11px; color: #999; margin-top: 2px; }
+
+  /* PHASE FOCUS BAR */
+  #phase-focus {
+    padding: 14px 20px; border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  #phase-focus .focus-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  #phase-focus .focus-text { font-size: 13px; color: var(--text-mid); }
+
+  /* WEEK SELECTOR */
+  #week-bar {
+    display: flex; gap: 8px; padding: 12px 16px;
+    background: #fff; border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .week-btn {
+    min-width: 72px; padding: 7px 4px; border: 1.5px solid #ddd;
+    border-radius: 6px; background: #fff; color: #555;
+    font-family: 'Source Serif 4', serif; font-size: 12px;
+    cursor: pointer; font-weight: 400; line-height: 1.4; transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .week-btn.active { color: #fff; font-weight: 700; }
+  .week-btn .deload-label { font-size: 10px; margin-top: 2px; }
+
+  /* MAIN CONTENT */
+  #content { padding: 16px; }
+
+  /* DAY TABS */
+  #day-tabs { display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; }
+  .day-btn {
+    padding: 8px 12px; border: 1.5px solid #ddd; border-radius: 6px;
+    background: #fff; color: #555; font-family: 'Source Serif 4', serif;
+    font-size: 12px; cursor: pointer; white-space: nowrap; font-weight: 400;
+    transition: all 0.2s;
+  }
+  .day-btn.active { color: #fff; font-weight: 700; }
+
+  /* WORKOUT CARD */
+  .workout-card {
+    background: #fff; border-radius: 10px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+
+  .card-header {
+    padding: 16px 18px; background: var(--dark); color: #fff;
+  }
+  .card-header .day-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .card-header h2 { font-size: 18px; font-weight: 700; }
+  .card-header .cardio-line {
+    margin-top: 8px; font-size: 13px; color: #ccc;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* WARMUP SECTION */
+  .section-bar {
+    padding: 9px 14px; display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid;
+  }
+  .section-bar.warmup-bar {
+    background: var(--warm-green-light);
+    border-color: var(--warm-green-border);
+  }
+  .section-bar.main-bar {
+    background: var(--dark);
+    border-color: #333;
+  }
+  .section-bar .bar-icon { font-size: 15px; }
+  .section-bar .bar-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .section-bar.warmup-bar .bar-title { color: var(--warm-green); }
+  .section-bar.warmup-bar .bar-sub { font-size: 11px; color: #888; margin-left: 4px; }
+
+  /* TABLES */
+  .ex-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .ex-table thead tr { border-bottom: 1px solid; }
+  .ex-table.warmup-tbl thead tr { background: #f7faf8; border-color: #e0ede8; }
+  .ex-table.main-tbl thead tr { background: #f7f5f0; border-color: #e0ddd8; }
+  .ex-table th {
+    padding: 8px 12px; text-align: left; font-weight: 700;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .ex-table.warmup-tbl th { color: #7ab8a0; }
+  .ex-table.main-tbl th { color: #999; }
+  .ex-table td { padding: 10px 12px; }
+  .ex-table tbody tr { border-bottom: 1px solid; }
+  .ex-table.warmup-tbl tbody tr:nth-child(even) { background: #fafcfb; border-color: #edf5f2; }
+  .ex-table.warmup-tbl tbody tr:nth-child(odd) { background: #fff; border-color: #edf5f2; }
+  .ex-table.main-tbl tbody tr:nth-child(even) { background: #fdfcfb; border-color: #f0ede8; }
+  .ex-table.main-tbl tbody tr:nth-child(odd) { background: #fff; border-color: #f0ede8; }
+  .ex-table.warmup-tbl .col-name { font-weight: 600; color: #2a6a54; }
+  .ex-table.warmup-tbl .col-dur { font-weight: 600; color: var(--warm-green); }
+  .ex-table.main-tbl .col-name { font-weight: 600; color: var(--dark); }
+  .ex-table.main-tbl .col-name.indent { padding-left: 22px; font-weight: 400; color: #555; }
+  .ex-table.main-tbl .col-name.header-row { font-weight: 400; color: var(--dark); }
+  .ex-table.main-tbl .col-sets { color: #555; }
+  .ex-table .col-notes { font-size: 12px; font-style: italic; color: var(--text-muted); }
+
+  /* PROGRESSION NOTE CARD */
+  .note-card {
+    background: #fff; border-radius: 10px; border: 1.5px solid;
+    padding: 20px;
+  }
+  .note-card .note-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .note-card p { font-size: 14px; line-height: 1.75; color: var(--text-mid); }
+
+  /* TIPS GRID */
+  #tips { margin-top: 24px; }
+  #tips .tips-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: #999; margin-bottom: 12px;
+  }
+  .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tip-card {
+    background: #fff; border-radius: 8px; border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+  .tip-card .tip-icon { font-size: 18px; margin-bottom: 4px; }
+  .tip-card .tip-title { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .tip-card .tip-text { font-size: 11px; color: #666; line-height: 1.6; }
+
+  /* DISCLAIMER */
+  #disclaimer {
+    text-align: center; padding: 24px 0 8px;
+    font-size: 11px; color: #bbb; letter-spacing: 1px;
+  }
+
+  .overflow-x { overflow-x: auto; }
+  .hidden { display: none !important; }
+
+  /* WEIGHT LOGGING */
+  .log-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 10px 14px 0; padding: 7px 14px;
+    background: var(--dark); color: #fff; border: none;
+    border-radius: 20px; font-family: 'Source Serif 4', serif;
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; transition: opacity 0.2s;
+  }
+  .log-btn:hover { opacity: 0.8; }
+  .log-btn.saved { background: var(--warm-green); }
+
+  .log-panel {
+    margin: 0 14px 14px; padding: 14px;
+    background: #f9f8f5; border: 1px solid var(--border);
+    border-radius: 8px; display: none;
+  }
+  .log-panel.open { display: block; }
+  .log-panel-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #999; margin-bottom: 10px;
+  }
+
+  .set-log-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 7px;
+  }
+  .set-log-label {
+    font-size: 12px; color: #666; min-width: 44px;
+  }
+  .weight-input {
+    width: 72px; padding: 5px 8px; border: 1.5px solid #ddd;
+    border-radius: 5px; font-family: 'Source Serif 4', serif;
+    font-size: 13px; color: var(--dark); background: #fff;
+    transition: border-color 0.2s;
+  }
+  .weight-input:focus { outline: none; border-color: var(--warm-green); }
+  .weight-input.filled { border-color: #b8ddd3; background: #f0faf6; }
+  .weight-unit { font-size: 11px; color: #aaa; }
+
+  .prev-weight {
+    font-size: 11px; color: #aaa; font-style: italic; margin-left: 4px;
+  }
+  .prev-weight.pr { color: #c97b6e; font-style: normal; font-weight: 600; }
+
+  .save-log-btn {
+    margin-top: 10px; width: 100%; padding: 8px;
+    background: var(--warm-green); color: #fff; border: none;
+    border-radius: 6px; font-family: 'Source Serif 4', serif;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; transition: opacity 0.2s;
+  }
+  .save-log-btn:hover { opacity: 0.85; }
+  .save-log-btn.done { background: #1a1a1a; }
+
+  /* PROGRESS BADGE */
+  .progress-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; border-radius: 10px; font-size: 10px;
+    font-weight: 700; letter-spacing: 0.5px; vertical-align: middle;
+    margin-left: 8px;
+  }
+  .progress-badge.pr { background: #fdf2f0; color: #c97b6e; }
+  .progress-badge.logged { background: #f0faf6; color: #4a9a80; }
+
+  /* HISTORY MODAL */
+  #history-modal {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55); z-index: 100;
+    align-items: flex-end; justify-content: center;
+  }
+  #history-modal.open { display: flex; }
+  #history-panel {
+    background: #fff; width: 100%; max-width: 540px;
+    border-radius: 16px 16px 0 0; padding: 24px 20px 32px;
+    max-height: 80vh; overflow-y: auto;
+  }
+  #history-panel h3 {
+    font-family: 'Playfair Display', serif; font-size: 18px;
+    margin-bottom: 4px;
+  }
+  #history-panel .history-sub {
+    font-size: 12px; color: #999; margin-bottom: 16px;
+  }
+  .history-entry {
+    padding: 10px 0; border-bottom: 1px solid #f0ede8;
+  }
+  .history-entry:last-child { border-bottom: none; }
+  .history-entry .h-week {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #999; margin-bottom: 4px;
+  }
+  .history-entry .h-sets {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .history-entry .h-set {
+    padding: 3px 9px; background: #f7f5f0; border-radius: 12px;
+    font-size: 12px; color: var(--dark);
+  }
+  .history-entry .h-set.best {
+    background: #fdf2f0; color: #c97b6e; font-weight: 700;
+  }
+  #close-history {
+    margin-top: 16px; width: 100%; padding: 10px;
+    background: var(--dark); color: #fff; border: none;
+    border-radius: 8px; font-family: 'Source Serif 4', serif;
+    font-size: 13px; cursor: pointer;
+  }
+
+  /* PROGRESS VIEW */
+  #progress-btn-wrap {
+    padding: 12px 16px; background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: flex-end;
+  }
+  #progress-btn {
+    padding: 7px 16px; border: 1.5px solid var(--border);
+    border-radius: 20px; background: #fff; color: #555;
+    font-family: 'Source Serif 4', serif; font-size: 12px;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  #progress-btn:hover { border-color: var(--warm-green); color: var(--warm-green); }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="eyebrow">Home Gym Program</div>
+  <h1>12-Week Tone &amp; Sculpt</h1>
+  <div class="subtitle">Ankle &amp; Lower Back Adapted &nbsp;·&nbsp; Chest Focused &nbsp;·&nbsp; 3 Phases &nbsp;·&nbsp; 6 Days/Week</div>
+</header>
+
+<div id="phase-tabs"></div>
+<div id="phase-focus"></div>
+<div id="week-bar"></div>
+<div id="progress-btn-wrap">
+  <button id="progress-btn" onclick="openProgress()">📊 View Progress Log</button>
+</div>
+
+<div id="content">
+  <div id="day-tabs"></div>
+  <div id="day-view"></div>
+
+  <div id="tips">
+    <div class="tips-label">Key Guidelines</div>
+    <div class="tips-grid" id="tips-grid"></div>
+  </div>
+  <div id="disclaimer">⚠️ Always consult your physician before beginning any new exercise program.</div>
+</div>
+
+<!-- History Modal -->
+<div id="history-modal" onclick="closeHistory(event)">
+  <div id="history-panel">
+    <h3 id="history-title"></h3>
+    <div class="history-sub" id="history-sub"></div>
+    <div id="history-entries"></div>
+    <button id="close-history" onclick="closeHistoryModal()">Close</button>
+  </div>
+</div>
+
+<!-- Progress Modal -->
+<div id="progress-modal" onclick="closeProgress(event)" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:100;align-items:flex-end;justify-content:center;">
+  <div style="background:#fff;width:100%;max-width:540px;border-radius:16px 16px 0 0;padding:24px 20px 32px;max-height:85vh;overflow-y:auto;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:4px;">Progress Log</h3>
+    <div style="font-size:12px;color:#999;margin-bottom:16px;">All logged weights across your program</div>
+    <div id="progress-content"></div>
+    <button onclick="closeProgressModal()" style="margin-top:16px;width:100%;padding:10px;background:var(--dark);color:#fff;border:none;border-radius:8px;font-family:'Source Serif 4',serif;font-size:13px;cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+const PHASE_COLORS = ["#7EB8A4","#D4A76A","#C97B6E"];
+const PHASE_BG = ["#f0faf6","#fdf6ec","#fdf2f0"];
+
+const data = {
+  phases: [
+    {
+      phase:1, name:"Foundation", weeks:"1–4",
+      focus:"Movement quality, muscle activation, building work capacity",
+      weeks_data:[
+        { week:1, days:[
+          { day:"Monday", label:"Chest & Push – Strength Foundation", cardio:"10 min Spin Bike warm-up (easy)",
+            warmup:[
+              {name:"Spin Bike (easy)", duration:"5 min", notes:"Raise heart rate gently"},
+              {name:"Arm Circles (forward & back)", duration:"30 sec each direction", notes:"Loosen shoulder joint"},
+              {name:"Band Pull-Apart", duration:"2×15 reps", notes:"Activate rear delts & scapular stabilizers"},
+              {name:"Scapular Push-Up (on knees)", duration:"2×10 reps", notes:"Prime serratus anterior — critical for chest pressing"},
+              {name:"Chest Opener Stretch (doorway or bands)", duration:"45 sec hold", notes:"Open pecs before pressing — maximize ROM"},
+              {name:"Light DB Flat Press (very light)", duration:"1×15 reps", notes:"10–15 lbs, groove pattern before working sets"},
+            ],
+            exercises:[
+              {name:"Flat DB Bench Press", sets:"4", reps:"10", notes:"PRIMARY chest builder — full ROM, elbows at 45°"},
+              {name:"Incline DB Press", sets:"4", reps:"10", notes:"Upper chest emphasis — set bench to 30–45°"},
+              {name:"Decline DB Press", sets:"3", reps:"12", notes:"Lower chest sweep — don't neglect this angle"},
+              {name:"DB Chest Fly (flat bench)", sets:"3", reps:"14", notes:"Light weight, deep stretch at bottom, squeeze at top"},
+              {name:"Dip Bar Dips (chest-forward lean)", sets:"3", reps:"10", notes:"Lean torso forward to hit lower chest, not just triceps"},
+              {name:"Band Pull-Apart", sets:"3", reps:"20", notes:"Scapular health — balances all the pressing"},
+            ]
+          },
+          { day:"Tuesday", label:"Lower Body – Squat Focus", cardio:"5 min Ski Row warm-up",
+            warmup:[
+              {name:"Ski Row (easy pace)", duration:"3 min", notes:"Gentle full-body activation"},
+              {name:"Hip Circle (standing, hands on hips)", duration:"10 reps each direction", notes:"Loosen hip joints"},
+              {name:"Banded Clamshell", duration:"1×15/side", notes:"Wake up glute medius before loading"},
+              {name:"Glute Bridge (bodyweight)", duration:"1×15 reps", notes:"Activate posterior chain"},
+              {name:"Bodyweight Squat w/ Wedge (slow)", duration:"2×10 reps", notes:"3-sec descent, rehearse pattern"},
+              {name:"Ankle Rolls – LEFT only", duration:"10 reps each direction", notes:"Mobility prep; avoid forced ROM on right"},
+            ],
+            exercises:[
+              {name:"Goblet Squat w/ Wedge", sets:"4", reps:"10", notes:"Heels on wedge, upright torso"},
+              {name:"Romanian Deadlift (RDL)", sets:"3", reps:"10", notes:"Hip hinge, soft knees, protect lower back"},
+              {name:"Dumbbell Step-Up (low box)", sets:"3", reps:"10/side", notes:"Lead with left leg more; right ankle unloaded step-up"},
+              {name:"Banded Clamshell", sets:"3", reps:"15/side", notes:"Glute activation"},
+              {name:"Standing Calf Raise (left dominant)", sets:"3", reps:"15", notes:"Go easy on right ankle"},
+              {name:"Dead Bug", sets:"3", reps:"8/side", notes:"Core stability, back-safe"},
+            ]
+          },
+          { day:"Wednesday", label:"Cardio + Core", cardio:"20 min Spin Bike (Zone 2)",
+            warmup:[
+              {name:"Spin Bike (very easy)", duration:"5 min", notes:"Included in 20 min total — start at low resistance"},
+              {name:"Cat-Cow (on floor)", duration:"10 slow reps", notes:"Spinal mobilization, key for lower back"},
+              {name:"Child's Pose", duration:"60 sec hold", notes:"Decompress lumbar spine"},
+              {name:"Dead Bug (slow, no weight)", duration:"1×6/side", notes:"Prime core before cardio"},
+              {name:"Bird Dog", duration:"1×6/side", notes:"Activate glutes & thoracic extensors"},
+            ],
+            exercises:[
+              {name:"Plank (forearm)", sets:"3", reps:"30 sec", notes:"Back neutral"},
+              {name:"Bird Dog", sets:"3", reps:"10/side", notes:"Slow & controlled"},
+              {name:"Pallof Press (band)", sets:"3", reps:"12/side", notes:"Anti-rotation core"},
+              {name:"Glute Bridge", sets:"3", reps:"15", notes:"Drive hips, squeeze glutes"},
+              {name:"Side Plank (modified if needed)", sets:"3", reps:"20 sec/side", notes:""},
+            ]
+          },
+          { day:"Thursday", label:"Upper Body – Pull", cardio:"10 min Ski Row warm-up",
+            warmup:[
+              {name:"Ski Row (easy pace)", duration:"5 min", notes:"Engages back & shoulders before loading"},
+              {name:"Band Pull-Apart", duration:"2×15 reps", notes:"Rear delt & scapular retraction primer"},
+              {name:"Shoulder Rotation with Band (internal/external)", duration:"15 reps each direction", notes:"Rotator cuff prep"},
+              {name:"Cat-Cow", duration:"10 reps", notes:"Thoracic mobility for rowing posture"},
+              {name:"Light DB Bent-Over Row (very light)", duration:"1×12", notes:"Groove the hinge pattern before working sets"},
+            ],
+            exercises:[
+              {name:"Landmine Row", sets:"4", reps:"10/side", notes:"Hinge slightly, back flat"},
+              {name:"Dumbbell Bent-Over Row", sets:"3", reps:"12", notes:"Brace core, don't round"},
+              {name:"Dumbbell Bicep Curl", sets:"3", reps:"12", notes:""},
+              {name:"Dumbbell Hammer Curl", sets:"3", reps:"12", notes:""},
+              {name:"Band Face Pull", sets:"3", reps:"15", notes:"Shoulder health — essential to balance chest volume"},
+              {name:"Dumbbell Shrug", sets:"3", reps:"15", notes:"Upper traps"},
+              {name:"Landmine Press (single-arm)", sets:"3", reps:"12/side", notes:"Chest & anterior delt finisher — safe on lower back"},
+            ]
+          },
+          { day:"Friday", label:"Lower Body – Hinge Focus", cardio:"5 min Spin Bike",
+            warmup:[
+              {name:"Spin Bike (easy)", duration:"5 min", notes:"Blood flow to hips & hamstrings"},
+              {name:"Hip Hinge (bodyweight, hands on hips)", duration:"2×10 reps", notes:"Practice pattern before loading — flat back"},
+              {name:"Glute Bridge (bodyweight)", duration:"2×15 reps", notes:"Fire up glutes before deadlift variations"},
+              {name:"World's Greatest Stretch (left leg only)", duration:"5 reps/side", notes:"Hip flexor + thoracic; skip deep right ankle lunge"},
+              {name:"Hamstring Stretch (standing, soft knee)", duration:"30 sec/side", notes:"Protect lower back during hinges"},
+              {name:"Reverse Hyper on Bench (light)", duration:"1×15", notes:"Warm up lumbar extensors gently"},
+            ],
+            exercises:[
+              {name:"Landmine Deadlift", sets:"4", reps:"10", notes:"Easier on lower back than barbell"},
+              {name:"Dumbbell Sumo Squat w/ Wedge", sets:"3", reps:"12", notes:"Wide stance, inner thigh focus"},
+              {name:"Glute Bridge (single leg – left)", sets:"3", reps:"10/side", notes:"Right ankle stays supported"},
+              {name:"Lying Dumbbell Hamstring Curl", sets:"3", reps:"12", notes:"On bench, prone"},
+              {name:"Band Walk (lateral)", sets:"3", reps:"15/side", notes:"Hip abductor"},
+              {name:"Reverse Hyper on Bench", sets:"3", reps:"15", notes:"Lower back decompression"},
+            ]
+          },
+          { day:"Saturday", label:"Active Recovery + Conditioning", cardio:"25 min Ski Row (easy pace) or Spin Bike",
+            warmup:[
+              {name:"Light walking or marching in place", duration:"3 min", notes:"Easy joint prep before cardio"},
+              {name:"Neck rolls & shoulder shrugs", duration:"30 sec each", notes:"Release upper body tension from the week"},
+              {name:"Supine Knee-to-Chest", duration:"30 sec/side", notes:"Lower back release"},
+            ],
+            exercises:[
+              {name:"Foam Roll / Stretch", sets:"—", reps:"10 min", notes:"Hips, quads, calves (avoid forcing right ankle)"},
+              {name:"Band Shoulder Rotations", sets:"2", reps:"15/side", notes:""},
+              {name:"90/90 Hip Stretch", sets:"2", reps:"60 sec/side", notes:""},
+            ]
+          },
+          { day:"Sunday", label:"Rest", cardio:"—",
+            exercises:[{name:"Full Rest or light walk", sets:"—", reps:"—", notes:"Recovery is where muscle is built"}]
+          },
+        ]},
+        {week:2, note:"Same structure as Week 1. Add 5 lbs to flat and incline DB press. Focus on feeling the chest stretch at the bottom of every rep — not just moving weight."},
+        {week:3, note:"Same structure. Add 3-sec eccentric (lowering) on all chest presses — time under tension is key for chest growth. Try adding 5 lbs to flies too."},
+        {week:4, note:"Deload week. Reduce pressing weight by 20%, same reps. Focus on the mind-muscle connection — squeeze the pecs hard at the top of every rep."},
+      ]
+    },
+    {
+      phase:2, name:"Tone & Sculpt", weeks:"5–8",
+      focus:"Supersets, higher reps, increased time under tension",
+      weeks_data:[
+        { week:5, days:[
+          { day:"Monday", label:"Chest & Push – Supersets", cardio:"10 min Spin Bike warm-up",
+            warmup:[
+              {name:"Spin Bike (easy)", duration:"5 min", notes:"Elevate heart rate"},
+              {name:"Arm Circles (large)", duration:"30 sec each direction", notes:"Shoulder joint prep"},
+              {name:"Band Pull-Apart", duration:"2×20 reps", notes:"Scapular activation — critical before high-volume chest work"},
+              {name:"Scapular Push-Up (on knees)", duration:"2×10 reps", notes:"Prime serratus anterior"},
+              {name:"Chest Opener Stretch", duration:"45 sec hold", notes:"Open pecs — maximize depth on flys & presses"},
+              {name:"Light DB Flat Press", duration:"1×12 reps", notes:"Groove pattern before superset intensity"},
+            ],
+            exercises:[
+              {name:"Superset A1: Flat DB Bench Press", sets:"4", reps:"10", notes:"Heavy — this is your primary chest mass builder"},
+              {name:"Superset A2: DB Chest Fly (flat)", sets:"4", reps:"14", notes:"Light, deep stretch, immediate after press — no rest"},
+              {name:"Superset B1: Incline DB Press", sets:"4", reps:"10", notes:"Upper chest — 30–45° incline"},
+              {name:"Superset B2: Band Pull-Apart", sets:"4", reps:"20", notes:"No rest — rear delt health between chest sets"},
+              {name:"Superset C1: Decline DB Press", sets:"3", reps:"12", notes:"Lower chest — lean forward on decline"},
+              {name:"Superset C2: Dip Bar Dips (chest lean)", sets:"3", reps:"10", notes:"Forward lean to target lower chest — no rest"},
+            ]
+          },
+          { day:"Tuesday", label:"Lower Body – Supersets", cardio:"5 min Ski Row",
+            warmup:[
+              {name:"Ski Row (easy)", duration:"3 min", notes:"Full-body activation"},
+              {name:"Hip Circle (standing)", duration:"10 reps each direction", notes:"Hip joint mobility"},
+              {name:"Banded Clamshell", duration:"1×15/side", notes:"Glute activation before squat supersets"},
+              {name:"Bodyweight Goblet Squat w/ Wedge (slow)", duration:"2×10 reps", notes:"Groove pattern, 3-sec descent"},
+              {name:"Glute Bridge (bodyweight)", duration:"1×15 reps", notes:"Posterior chain primer"},
+              {name:"Ankle Rolls – LEFT only", duration:"10 reps each direction", notes:"Right ankle: gentle toe flexion only"},
+            ],
+            exercises:[
+              {name:"Superset A1: Goblet Squat w/ Wedge", sets:"4", reps:"12", notes:""},
+              {name:"Superset A2: Glute Bridge", sets:"4", reps:"15", notes:""},
+              {name:"Superset B1: DB RDL", sets:"3", reps:"12", notes:""},
+              {name:"Superset B2: Banded Clamshell", sets:"3", reps:"15/side", notes:""},
+              {name:"Low Box Step-Up", sets:"3", reps:"10/side", notes:"Controlled descent on right"},
+              {name:"Dead Bug", sets:"3", reps:"10/side", notes:""},
+            ]
+          },
+          { day:"Wednesday", label:"HIIT Cardio + Core", cardio:"20 min Ski Row (30 sec hard / 60 sec easy)",
+            warmup:[
+              {name:"Ski Row (very easy)", duration:"5 min", notes:"First 5 min of session — build into intervals"},
+              {name:"Cat-Cow", duration:"10 slow reps", notes:"Spinal prep before HIIT"},
+              {name:"Glute Bridge (bodyweight)", duration:"1×15 reps", notes:"Activate hips before rowing intervals"},
+              {name:"Dead Bug (slow)", duration:"1×6/side", notes:"Core bracing pattern before high-intensity work"},
+              {name:"Shoulder Rolls & Neck Rolls", duration:"30 sec each", notes:"Release tension before ski row"},
+            ],
+            exercises:[
+              {name:"Plank w/ shoulder tap", sets:"3", reps:"10/side", notes:""},
+              {name:"Pallof Press", sets:"3", reps:"15/side", notes:""},
+              {name:"Single-leg Glute Bridge (left focus)", sets:"3", reps:"12/side", notes:""},
+              {name:"Reverse Hyper on Bench", sets:"3", reps:"15", notes:""},
+            ]
+          },
+          { day:"Thursday", label:"Upper Body – Pull (Supersets)", cardio:"10 min Spin Bike",
+            warmup:[
+              {name:"Spin Bike (easy)", duration:"5 min", notes:"Shoulder & upper back blood flow"},
+              {name:"Band Pull-Apart", duration:"2×20 reps", notes:"Rear delt activation before superset rows"},
+              {name:"Shoulder External Rotation with Band", duration:"2×15/side", notes:"Rotator cuff prep"},
+              {name:"Cat-Cow", duration:"10 reps", notes:"Thoracic mobility for rowing posture"},
+              {name:"Light DB Row (very light)", duration:"1×12", notes:"Pattern rehearsal, focus on scapular retraction"},
+            ],
+            exercises:[
+              {name:"Superset A1: Landmine Row", sets:"4", reps:"10/side", notes:""},
+              {name:"Superset A2: Face Pull (band)", sets:"4", reps:"15", notes:""},
+              {name:"Superset B1: DB Bent-Over Row", sets:"3", reps:"12", notes:""},
+              {name:"Superset B2: DB Hammer Curl", sets:"3", reps:"12", notes:""},
+              {name:"Incline DB Curl", sets:"3", reps:"12", notes:"Full stretch at bottom"},
+              {name:"DB Shrug", sets:"3", reps:"15", notes:""},
+            ]
+          },
+          { day:"Friday", label:"Lower Body – Hinge Supersets", cardio:"5 min warm-up",
+            warmup:[
+              {name:"Spin Bike (easy)", duration:"5 min", notes:"Hip & hamstring warm-up"},
+              {name:"Hip Hinge (bodyweight)", duration:"2×10 reps", notes:"Reinforce flat-back pattern before landmine deadlift"},
+              {name:"Glute Bridge (bodyweight)", duration:"2×15 reps", notes:"Posterior chain activation"},
+              {name:"Band Walk (lateral)", duration:"1×15/side", notes:"Hip abductor primer"},
+              {name:"Standing Hamstring Stretch", duration:"30 sec/side", notes:"Light stretch, protect lower back"},
+              {name:"Reverse Hyper on Bench (no weight)", duration:"1×15", notes:"Warm up lumbar extensors"},
+            ],
+            exercises:[
+              {name:"Superset A1: Landmine Deadlift", sets:"4", reps:"10", notes:""},
+              {name:"Superset A2: Band Walk", sets:"4", reps:"15/side", notes:""},
+              {name:"Superset B1: DB Sumo Squat w/ Wedge", sets:"3", reps:"12", notes:""},
+              {name:"Superset B2: Lying Ham Curl", sets:"3", reps:"12", notes:""},
+              {name:"Decline DB Press", sets:"3", reps:"12", notes:"Lower chest finisher — lean forward, elbows at 45°"},
+              {name:"DB Chest Fly (flat or decline)", sets:"2", reps:"15", notes:"Bonus chest stretch & squeeze to end the week"},
+              {name:"Core: Side Plank", sets:"3", reps:"30 sec/side", notes:""},
+            ]
+          },
+          { day:"Saturday", label:"Steady Cardio + Mobility", cardio:"30 min Spin Bike (Zone 2)",
+            exercises:[
+              {name:"Hip Flexor Stretch", sets:"2", reps:"60 sec/side", notes:""},
+              {name:"Pigeon Pose (modified)", sets:"2", reps:"60 sec/side", notes:""},
+              {name:"Ankle circles (left ankle full, right gentle)", sets:"2", reps:"10/direction", notes:""},
+            ]
+          },
+          { day:"Sunday", label:"Rest", cardio:"—", exercises:[{name:"Full Rest", sets:"—", reps:"—", notes:""}] },
+        ]},
+        {week:6, note:"Same superset structure. Increase flat DB press and fly weights by 5 lbs. On the chest-to-fly supersets, pause 1 sec at the stretch point of the fly — this triggers more growth."},
+        {week:7, note:"Increase superset pace. Add a 4th set to the flat press/fly superset. For chest flys: go 20 sec hard / 40 sec easy on the cardio to pair with chest-focused days."},
+        {week:8, note:"Deload. 20% less weight, same reps. Prioritize form and mind-muscle connection — really feel each chest rep, don't just go through the motions."},
+      ]
+    },
+    {
+      phase:3, name:"Peak & Define", weeks:"9–12",
+      focus:"Drop sets, circuits, metabolic conditioning, maximum definition",
+      weeks_data:[
+        { week:9, days:[
+          { day:"Monday", label:"Chest & Push – Drop Sets & Peak", cardio:"10 min Spin Bike warm-up",
+            warmup:[
+              {name:"Spin Bike (moderate build)", duration:"5 min", notes:"Ramp heart rate — drop sets are intense"},
+              {name:"Band Pull-Apart", duration:"2×20 reps", notes:"Rear delt & scapular prep"},
+              {name:"Scapular Push-Up", duration:"2×12 reps", notes:"Prime serratus anterior before heavy chest volume"},
+              {name:"Chest Opener Stretch", duration:"45 sec hold", notes:"Full pec stretch before drop sets"},
+              {name:"Light DB Flat Press (50% working weight)", duration:"1×10", notes:"Rehearse pattern, prime motor units"},
+              {name:"Thoracic Extension over bench edge", duration:"5 slow reps", notes:"Open chest, improve pressing ROM"},
+            ],
+            exercises:[
+              {name:"Flat DB Press (drop set: heavy→med→light)", sets:"4", reps:"8→10→12", notes:"No rest between drops — peak chest stimulus"},
+              {name:"Incline DB Press (drop set)", sets:"3", reps:"8→12", notes:"Upper chest — drop weight after each mini-set"},
+              {name:"Decline DB Press", sets:"3", reps:"10", notes:"Lower chest — keep elbows at 45°"},
+              {name:"DB Chest Fly – flat (drop set)", sets:"3", reps:"12→15", notes:"Deep stretch at bottom, squeeze hard at top"},
+              {name:"Dip Bar Dips (chest-forward, weighted if able)", sets:"3", reps:"10", notes:"Lean forward, feel lower chest — add weight via belt or hold DB"},
+              {name:"Band Chest Fly (standing)", sets:"3", reps:"20", notes:"Burnout — light band, constant tension throughout"},
+            ]
+          },
+          { day:"Tuesday", label:"Lower Body – Circuit", cardio:"5 min Ski Row",
+            warmup:[
+              {name:"Ski Row (easy)", duration:"3 min", notes:"Full-body activation before circuit"},
+              {name:"Hip Circle (standing)", duration:"10 reps each direction", notes:"Hip joint mobility"},
+              {name:"Banded Clamshell", duration:"1×15/side", notes:"Glute activation primer"},
+              {name:"Bodyweight Squat w/ Wedge (slow)", duration:"2×10 reps", notes:"Rehearse squat pattern before circuit intensity"},
+              {name:"Glute Bridge (bodyweight)", duration:"1×15 reps", notes:"Posterior chain warm-up"},
+              {name:"Cat-Cow", duration:"8 slow reps", notes:"Spinal prep — circuits can load the back repeatedly"},
+            ],
+            exercises:[
+              {name:"Circuit (3 rounds, 30 sec rest between rounds):", sets:"3", reps:"—", notes:""},
+              {name:"→ Goblet Squat w/ Wedge", sets:"—", reps:"15", notes:""},
+              {name:"→ Glute Bridge (double)", sets:"—", reps:"20", notes:""},
+              {name:"→ Band Walk", sets:"—", reps:"15/side", notes:""},
+              {name:"→ DB RDL", sets:"—", reps:"12", notes:""},
+              {name:"→ Dead Bug", sets:"—", reps:"10/side", notes:""},
+            ]
+          },
+          { day:"Wednesday", label:"Cardio – Ski Row Intervals", cardio:"5 min easy → 6× (90 sec hard / 90 sec easy) → 5 min easy",
+            warmup:[
+              {name:"Ski Row (easy, arms only)", duration:"2 min", notes:"Loosen shoulders without loading legs"},
+              {name:"Ski Row (easy, full body)", duration:"3 min", notes:"Gradually increase pace — this IS your warm-up"},
+              {name:"Shoulder Rolls & Wrist Circles", duration:"30 sec each", notes:"Prep grip and shoulders for hard intervals"},
+              {name:"Cat-Cow", duration:"8 reps", notes:"Spinal decompression before intense rowing"},
+              {name:"Glute Bridge (bodyweight)", duration:"1×10", notes:"Activate posterior chain for powerful drive"},
+            ],
+            exercises:[
+              {name:"Plank Circuit:", sets:"3", reps:"—", notes:""},
+              {name:"→ Forearm Plank", sets:"—", reps:"40 sec", notes:""},
+              {name:"→ Side Plank R", sets:"—", reps:"20 sec", notes:""},
+              {name:"→ Side Plank L", sets:"—", reps:"20 sec", notes:""},
+              {name:"→ Bird Dog", sets:"—", reps:"10/side", notes:""},
+            ]
+          },
+          { day:"Thursday", label:"Upper Pull – Drop Sets", cardio:"10 min Ski Row warm-up",
+            warmup:[
+              {name:"Ski Row (easy build)", duration:"5 min", notes:"Prime back & biceps before high-volume drop sets"},
+              {name:"Band Pull-Apart", duration:"2×20 reps", notes:"Rear delt & scapular activation"},
+              {name:"Shoulder External Rotation (band)", duration:"2×15/side", notes:"Rotator cuff prep"},
+              {name:"Dead Hang (from dip bars or rack)", duration:"2×20 sec", notes:"Decompress spine, stretch lats — skip if shoulder pain"},
+              {name:"Light DB Curl", duration:"1×15 reps", notes:"5–10 lbs, elbow flexor activation before drops"},
+            ],
+            exercises:[
+              {name:"Landmine Row (drop set)", sets:"3", reps:"8→12/side", notes:""},
+              {name:"DB Bent-Over Row", sets:"3", reps:"10", notes:""},
+              {name:"DB Bicep Curl (drop set)", sets:"3", reps:"8→12", notes:""},
+              {name:"Incline DB Curl (drop set)", sets:"3", reps:"10→15", notes:""},
+              {name:"Band Face Pull", sets:"3", reps:"20", notes:"Burnout"},
+              {name:"DB Shrug", sets:"3", reps:"15", notes:""},
+            ]
+          },
+          { day:"Friday", label:"Full Body Circuit", cardio:"5 min warm-up",
+            warmup:[
+              {name:"Spin Bike (easy-moderate)", duration:"5 min", notes:"Full body primer — circuits hit everything"},
+              {name:"Arm Circles", duration:"30 sec each direction", notes:"Shoulder prep"},
+              {name:"Hip Hinge (bodyweight)", duration:"1×10 reps", notes:"Pattern rehearsal before circuit deadlifts"},
+              {name:"Bodyweight Squat w/ Wedge", duration:"1×10 reps", notes:"Groove squat before circuit intensity"},
+              {name:"Band Pull-Apart", duration:"1×15 reps", notes:"Upper back activation"},
+              {name:"Cat-Cow", duration:"8 reps", notes:"Spinal mobility — full body circuits are demanding on the back"},
+            ],
+            exercises:[
+              {name:"Circuit (4 rounds, 45 sec rest between rounds):", sets:"4", reps:"—", notes:""},
+              {name:"→ Landmine Deadlift", sets:"—", reps:"10", notes:""},
+              {name:"→ Flat DB Bench Press", sets:"—", reps:"12", notes:"Chest priority — full ROM"},
+              {name:"→ Bent-Over Row", sets:"—", reps:"10", notes:""},
+              {name:"→ DB Chest Fly", sets:"—", reps:"12", notes:"Light weight — stretch and squeeze"},
+              {name:"→ Goblet Squat w/ Wedge", sets:"—", reps:"12", notes:""},
+              {name:"→ Dip Bar Dips (chest lean)", sets:"—", reps:"10", notes:"Lean forward for lower chest"},
+              {name:"→ Pallof Press", sets:"—", reps:"12/side", notes:""},
+            ]
+          },
+          { day:"Saturday", label:"Spin Bike Endurance", cardio:"35–40 min Spin Bike (Zone 2)",
+            exercises:[{name:"Full mobility routine", sets:"—", reps:"15 min", notes:"Hips, hamstrings, shoulders, ankle"}]
+          },
+          { day:"Sunday", label:"Rest", cardio:"—", exercises:[{name:"Full Rest", sets:"—", reps:"—", notes:""}] },
+        ]},
+        {week:10, note:"Increase drop set weight on flat DB press by 5 lbs per drop tier. Add a 5th round to Friday's full-body circuit. Cardio intervals up to 2 min hard / 90 sec easy."},
+        {week:11, note:"Peak intensity week. Push every chest set to within 1 rep of failure. Keep rest between chest sets to 60–75 sec. Sleep and protein are non-negotiable."},
+        {week:12, note:"Active final week — reduce chest volume by 30%, maintain intensity on key lifts. Measure progress, celebrate, and plan your next cycle with a higher baseline."},
+      ]
+    }
+  ],
+  tips:[
+    {icon:"🦶", title:"Right Ankle", text:"Always use the wedge for squats. Avoid single-leg work on right side under load. Step-ups: lead with left leg down."},
+    {icon:"🔙", title:"Lower Back", text:"Never round your back on hinges. Use landmine variations as a safer barbell alternative. Reverse hypers help decompress the spine."},
+    {icon:"💪", title:"Chest Growth", text:"Hit all 3 angles every Monday — flat (mid chest), incline (upper), decline/dips (lower). Stretch deep at the bottom of every fly. 3-sec eccentric on presses = more growth."},
+    {icon:"⚖️", title:"Push/Pull Balance", text:"For every chest pressing set, you're doing a pulling set (rows, face pulls). This protects shoulders and prevents posture issues from heavy chest work."},
+    {icon:"💧", title:"Nutrition", text:"For toning with chest growth: keep protein at 0.8–1g per lb bodyweight. Chest needs protein to rebuild — prioritize it on push days."},
+    {icon:"😴", title:"Recovery", text:"Sleep 7–9 hours. Chest grows fastest with 48–72 hrs rest between push sessions. Deload weeks are mandatory — don't skip them."},
+    {icon:"📈", title:"Progressive Overload", text:"Add 5 lbs to flat press when you hit all reps cleanly. Track your weights every session — chest responds well to consistent progressive overload."},
+    {icon:"🚫", title:"Skip These", text:"Avoid barbell back squats (use landmine/goblet instead), heavy deadlifts from floor, and high-impact box jumps with right ankle."},
+  ]
+};
+
+// --- STATE ---
+let activePhase = 0, activeWeek = 0, activeDay = 0;
+
+// --- STORAGE ---
+// Key format: "wl_{phase}_{weekIdx}_{dayIdx}_{exIdx}_{setIdx}"
+function storageKey(phaseIdx, weekIdx, dayIdx, exIdx, setIdx) {
+  return `wl_${phaseIdx}_${weekIdx}_${dayIdx}_${exIdx}_${setIdx}`;
+}
+function saveWeight(phaseIdx, weekIdx, dayIdx, exIdx, setIdx, val) {
+  const key = storageKey(phaseIdx, weekIdx, dayIdx, exIdx, setIdx);
+  if (val) localStorage.setItem(key, val);
+  else localStorage.removeItem(key);
+}
+function getWeight(phaseIdx, weekIdx, dayIdx, exIdx, setIdx) {
+  return localStorage.getItem(storageKey(phaseIdx, weekIdx, dayIdx, exIdx, setIdx)) || '';
+}
+function getExerciseHistory(exName) {
+  // Returns array of {weekLabel, sets:[{setNum, weight}], best}
+  const history = [];
+  data.phases.forEach((ph, pi) => {
+    ph.weeks_data.forEach((wk, wi) => {
+      if (!wk.days) return;
+      wk.days.forEach((day, di) => {
+        day.exercises.forEach((ex, ei) => {
+          if (ex.name !== exName) return;
+          const numSets = parseInt(ex.sets) || 0;
+          if (!numSets) return;
+          const sets = [];
+          let best = 0;
+          for (let si = 0; si < numSets; si++) {
+            const w = getWeight(pi, wi, di, ei, si);
+            if (w) { sets.push({setNum: si+1, weight: w}); best = Math.max(best, parseFloat(w)||0); }
+          }
+          if (sets.length) {
+            history.push({weekLabel: `Phase ${ph.phase} · Week ${wk.week} · ${day.day}`, sets, best});
+          }
+        });
+      });
+    });
+  });
+  return history;
+}
+function getPrevWeight(exName, exIdx, dayIdx, weekIdx, phaseIdx) {
+  // Look back through previous weeks for same exercise index on same day
+  const weights = [];
+  // Check same day of previous weeks
+  for (let wi = weekIdx - 1; wi >= 0; wi--) {
+    const wk = data.phases[phaseIdx].weeks_data[wi];
+    if (!wk || !wk.days || !wk.days[dayIdx]) continue;
+    const ex = wk.days[dayIdx].exercises[exIdx];
+    if (!ex || ex.name !== exName) continue;
+    const numSets = parseInt(ex.sets) || 0;
+    for (let si = 0; si < numSets; si++) {
+      const w = getWeight(phaseIdx, wi, dayIdx, exIdx, si);
+      if (w) weights.push(parseFloat(w));
+    }
+    if (weights.length) break;
+  }
+  return weights.length ? Math.max(...weights) : null;
+}
+function hasAnyLog(phaseIdx, weekIdx, dayIdx) {
+  const wk = data.phases[phaseIdx].weeks_data[weekIdx];
+  if (!wk || !wk.days || !wk.days[dayIdx]) return false;
+  return wk.days[dayIdx].exercises.some((ex, ei) => {
+    const n = parseInt(ex.sets) || 0;
+    return Array.from({length:n}, (_,si) => getWeight(phaseIdx,weekIdx,dayIdx,ei,si)).some(Boolean);
+  });
+}
+
+// --- HELPERS ---
+function color() { return PHASE_COLORS[activePhase]; }
+function bg() { return PHASE_BG[activePhase]; }
+function phase() { return data.phases[activePhase]; }
+function week() { return phase().weeks_data[activeWeek]; }
+function dayData() { const w = week(); return w.days ? w.days[activeDay] : null; }
+function slugEx(name) { return name.replace(/[^a-z0-9]/gi,'_').toLowerCase(); }
+
+// --- RENDER ---
+function renderAll() {
+  renderHeader();
+  renderPhaseTabs();
+  renderPhaseFocus();
+  renderWeekBar();
+  renderContent();
+}
+
+function renderHeader() {
+  document.getElementById('site-header').style.borderBottomColor = color();
+}
+
+function renderPhaseTabs() {
+  const el = document.getElementById('phase-tabs');
+  el.innerHTML = data.phases.map((p, i) => `
+    <button class="phase-tab ${i===activePhase?'active':''}"
+      style="${i===activePhase ? `background:${PHASE_BG[i]};border-bottom:3px solid ${PHASE_COLORS[i]}` : ''}"
+      onclick="selectPhase(${i})">
+      <div class="phase-label" style="color:${PHASE_COLORS[i]}">Phase ${p.phase}</div>
+      <div>${p.name}</div>
+      <div class="phase-weeks">Wks ${p.weeks}</div>
+    </button>
+  `).join('');
+}
+
+function renderPhaseFocus() {
+  const el = document.getElementById('phase-focus');
+  el.style.background = bg();
+  el.innerHTML = `
+    <div class="focus-label" style="color:${color()}">Focus</div>
+    <div class="focus-text">${phase().focus}</div>
+  `;
+}
+
+function renderWeekBar() {
+  const el = document.getElementById('week-bar');
+  el.innerHTML = phase().weeks_data.map((w, i) => {
+    const isDeload = w.week===4||w.week===8||w.week===12;
+    // Show logged indicator dots for days that have data
+    let dots = '';
+    if (w.days) {
+      const loggedDays = w.days.filter((_,di) => hasAnyLog(activePhase,i,di)).length;
+      if (loggedDays) dots = `<div style="margin-top:3px;font-size:9px;color:${i===activeWeek?'rgba(255,255,255,0.8)':'#7EB8A4'}">● ${loggedDays}/${w.days.filter(d=>d.day!=='Sunday').length} logged</div>`;
+    }
+    return `<button class="week-btn ${i===activeWeek?'active':''}"
+      style="${i===activeWeek ? `background:${color()};border-color:${color()}` : ''}"
+      onclick="selectWeek(${i})">
+      ${isDeload?'⭐ ':''}Week ${w.week}
+      ${isDeload?`<div class="deload-label">Deload</div>`:''}
+      ${dots}
+    </button>`;
+  }).join('');
+}
+
+function renderContent() {
+  const w = week();
+  const hasDetailed = !!w.days;
+  const dt = dayData();
+
+  const dayTabsEl = document.getElementById('day-tabs');
+  if (hasDetailed) {
+    dayTabsEl.innerHTML = w.days.map((d, i) => {
+      const logged = hasAnyLog(activePhase, activeWeek, i);
+      return `<button class="day-btn ${i===activeDay?'active':''}"
+        style="${i===activeDay ? `background:${color()};border-color:${color()}` : ''}"
+        onclick="selectDay(${i})">${d.day}${logged?` <span style="font-size:9px;opacity:0.7">●</span>`:''}
+      </button>`;
+    }).join('');
+    dayTabsEl.classList.remove('hidden');
+  } else {
+    dayTabsEl.classList.add('hidden');
+  }
+
+  const dayViewEl = document.getElementById('day-view');
+  if (hasDetailed && dt) {
+    dayViewEl.innerHTML = buildDayCard(dt);
+    restoreInputValues();
+  } else if (!hasDetailed) {
+    dayViewEl.innerHTML = `
+      <div class="note-card" style="border-color:${color()}">
+        <div class="note-label" style="color:${color()}">Week ${w.week} — Progression Notes</div>
+        <p>${w.note}</p>
+      </div>`;
+  }
+}
+
+function buildDayCard(dt) {
+  const warmupSection = dt.warmup ? `
+    <div class="section-bar warmup-bar">
+      <span class="bar-icon">🔥</span>
+      <span class="bar-title">Warm-Up</span>
+      <span class="bar-sub">Complete before main workout</span>
+    </div>
+    <div class="overflow-x">
+      <table class="ex-table warmup-tbl">
+        <thead><tr>
+          <th>Exercise</th><th>Duration / Volume</th><th>Notes</th>
+        </tr></thead>
+        <tbody>${dt.warmup.map(w => `
+          <tr>
+            <td class="col-name">${w.name}</td>
+            <td class="col-dur">${w.duration}</td>
+            <td class="col-notes">${w.notes}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="section-bar main-bar">
+      <span class="bar-icon">💪</span>
+      <span class="bar-title" style="color:${color()}">Main Workout</span>
+    </div>
+  ` : '';
+
+  const exRows = dt.exercises.map((ex, exIdx) => {
+    const isArrow = ex.name.startsWith('→');
+    const isHeader = ex.name.startsWith('Circuit') || ex.name.startsWith('Plank Circuit') || ex.name.startsWith('Superset') || ex.name.startsWith('Full');
+    const nameClass = isArrow ? 'col-name indent' : isHeader ? 'col-name header-row' : 'col-name';
+    const numSets = parseInt(ex.sets) || 0;
+    const canLog = numSets > 0 && !isArrow && !isHeader && ex.sets !== '—';
+
+    // Build badge
+    let badge = '';
+    if (canLog) {
+      const prev = getPrevWeight(ex.name, exIdx, activeDay, activeWeek, activePhase);
+      const anyLogged = Array.from({length:numSets},(_,si)=>getWeight(activePhase,activeWeek,activeDay,exIdx,si)).some(Boolean);
+      if (anyLogged) badge = `<span class="progress-badge logged">✓ logged</span>`;
+    }
+
+    const logRow = canLog ? `
+      <tr id="logrow-${exIdx}" class="log-row" style="display:none">
+        <td colspan="4" style="padding:0 12px 2px;background:#fafaf8;">
+          <div class="log-panel open" id="logpanel-${exIdx}">
+            <div class="log-panel-title">Log Weights — ${ex.name}</div>
+            ${Array.from({length:numSets}, (_,si) => {
+              const saved = getWeight(activePhase,activeWeek,activeDay,exIdx,si);
+              const prev = getPrevWeight(ex.name, exIdx, activeDay, activeWeek, activePhase);
+              const isPR = saved && prev && parseFloat(saved) > prev;
+              return `<div class="set-log-row">
+                <span class="set-log-label">Set ${si+1}</span>
+                <input type="number" class="weight-input${saved?' filled':''}" 
+                  id="w_${exIdx}_${si}" placeholder="lbs"
+                  value="${saved}"
+                  min="0" max="500" step="2.5"
+                  onchange="autoSaveWeight(${exIdx},${si})"
+                  oninput="onWeightInput(this,${exIdx},${si})">
+                <span class="weight-unit">lbs</span>
+                ${prev ? `<span class="prev-weight${isPR?' pr':''}">
+                  ${isPR ? '🏆 PR! ' : 'prev: '}${prev} lbs
+                </span>` : ''}
+              </div>`;
+            }).join('')}
+            <button class="save-log-btn" onclick="saveAllSets(${exIdx})">Save Sets</button>
+          </div>
+        </td>
+      </tr>` : '';
+
+    return `<tr id="exrow-${exIdx}" style="border-bottom:1px solid #f0ede8;background:${exIdx%2===0?'#fff':'#fdfcfb'}">
+      <td class="${nameClass}" style="padding:10px 12px;">
+        ${ex.name}${badge}
+        ${canLog ? `<br><button class="log-btn" id="logbtn-${exIdx}" onclick="toggleLog(${exIdx})">
+          ✏️ Log weights
+        </button>` : ''}
+      </td>
+      <td class="col-sets" style="padding:10px 12px;color:#555;vertical-align:top;">${ex.sets}</td>
+      <td style="color:${color()};font-weight:600;padding:10px 12px;vertical-align:top;">${ex.reps}</td>
+      <td class="col-notes" style="padding:10px 12px;vertical-align:top;">
+        ${ex.notes}
+        ${canLog ? `<br><span style="font-size:11px;color:#bbb;cursor:pointer;" onclick="showHistory('${ex.name.replace(/'/g,"\\'")}')">📈 history</span>` : ''}
+      </td>
+    </tr>${logRow}`;
+  }).join('');
+
+  const cardioLine = dt.cardio && dt.cardio !== '—' ? `
+    <div class="cardio-line"><span style="color:${color()}">🚴</span> ${dt.cardio}</div>` : '';
+
+  return `
+    <div class="workout-card">
+      <div class="card-header">
+        <div class="day-label" style="color:${color()}">${dt.day}</div>
+        <h2>${dt.label}</h2>
+        ${cardioLine}
+      </div>
+      ${warmupSection}
+      <div class="overflow-x">
+        <table class="ex-table main-tbl" style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="background:#f7f5f0;border-bottom:1px solid #e0ddd8;">
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999;">Exercise</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999;">Sets</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999;">Reps</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999;">Notes</th>
+          </tr></thead>
+          <tbody>${exRows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+function restoreInputValues() {
+  // inputs are already pre-filled via value= in the template
+}
+
+// --- LOG INTERACTIONS ---
+function toggleLog(exIdx) {
+  const logRow = document.getElementById(`logrow-${exIdx}`);
+  const btn = document.getElementById(`logbtn-${exIdx}`);
+  const isOpen = logRow.style.display !== 'none';
+  logRow.style.display = isOpen ? 'none' : 'table-row';
+  btn.textContent = isOpen ? '✏️ Log weights' : '▲ Close';
+  if (!isOpen) {
+    // scroll to it
+    setTimeout(() => logRow.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
+  }
+}
+
+function onWeightInput(input, exIdx, setIdx) {
+  input.classList.toggle('filled', !!input.value);
+}
+
+function autoSaveWeight(exIdx, setIdx) {
+  const input = document.getElementById(`w_${exIdx}_${setIdx}`);
+  if (!input) return;
+  saveWeight(activePhase, activeWeek, activeDay, exIdx, setIdx, input.value);
+}
+
+function saveAllSets(exIdx) {
+  const dt = dayData();
+  if (!dt) return;
+  const ex = dt.exercises[exIdx];
+  const numSets = parseInt(ex.sets) || 0;
+  for (let si = 0; si < numSets; si++) {
+    const input = document.getElementById(`w_${exIdx}_${si}`);
+    if (input) saveWeight(activePhase, activeWeek, activeDay, exIdx, si, input.value);
+  }
+  const btn = document.querySelector(`#logrow-${exIdx} .save-log-btn`);
+  if (btn) { btn.textContent = '✓ Saved!'; btn.classList.add('done'); setTimeout(()=>{btn.textContent='Save Sets';btn.classList.remove('done');},1500); }
+  // refresh badges
+  renderWeekBar();
+  renderContent();
+  // re-open the panel
+  const logRow = document.getElementById(`logrow-${exIdx}`);
+  if (logRow) logRow.style.display = 'table-row';
+}
+
+// --- HISTORY MODAL ---
+function showHistory(exName) {
+  const history = getExerciseHistory(exName);
+  document.getElementById('history-title').textContent = exName;
+  document.getElementById('history-sub').textContent = history.length ? `${history.length} logged session${history.length>1?'s':''}` : 'No sessions logged yet.';
+  const container = document.getElementById('history-entries');
+  if (!history.length) {
+    container.innerHTML = `<p style="color:#aaa;font-size:13px;padding:12px 0;">Log weights on this exercise to see your history here.</p>`;
+  } else {
+    const allBest = Math.max(...history.map(h=>h.best));
+    container.innerHTML = history.map(h => `
+      <div class="history-entry">
+        <div class="h-week">${h.weekLabel}</div>
+        <div class="h-sets">${h.sets.map(s=>`
+          <span class="h-set${s.weight==allBest?' best':''}">
+            Set ${s.setNum}: ${s.weight} lbs${s.weight==allBest?' 🏆':''}
+          </span>`).join('')}
+        </div>
+      </div>`).join('');
+  }
+  document.getElementById('history-modal').classList.add('open');
+}
+function closeHistory(e) { if(e.target===document.getElementById('history-modal')) closeHistoryModal(); }
+function closeHistoryModal() { document.getElementById('history-modal').classList.remove('open'); }
+
+// --- PROGRESS MODAL ---
+function openProgress() {
+  const modal = document.getElementById('progress-modal');
+  modal.style.display = 'flex';
+  const content = document.getElementById('progress-content');
+
+  // Collect all logged exercises
+  const exercises = {};
+  data.phases.forEach((ph, pi) => {
+    ph.weeks_data.forEach((wk, wi) => {
+      if (!wk.days) return;
+      wk.days.forEach((day, di) => {
+        day.exercises.forEach((ex, ei) => {
+          const n = parseInt(ex.sets)||0;
+          if (!n||ex.sets==='—') return;
+          const weights = Array.from({length:n},(_,si)=>getWeight(pi,wi,di,ei,si)).filter(Boolean).map(Number);
+          if (!weights.length) return;
+          if (!exercises[ex.name]) exercises[ex.name] = [];
+          exercises[ex.name].push({label:`Ph${ph.phase} W${wk.week} ${day.day.slice(0,3)}`, best: Math.max(...weights), weights});
+        });
+      });
+    });
+  });
+
+  const names = Object.keys(exercises);
+  if (!names.length) {
+    content.innerHTML = `<p style="color:#aaa;font-size:13px;">No weights logged yet. Use the ✏️ Log weights button on any exercise to get started.</p>`;
+  } else {
+    content.innerHTML = names.map(name => {
+      const sessions = exercises[name];
+      const overallBest = Math.max(...sessions.map(s=>s.best));
+      const bars = sessions.map(s => {
+        const pct = Math.round((s.best/overallBest)*100);
+        return `<div style="margin-bottom:6px;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:3px;">
+            <span>${s.label}</span><span style="font-weight:600;color:${s.best===overallBest?'#c97b6e':'var(--dark)'};">${s.best} lbs${s.best===overallBest?' 🏆':''}</span>
+          </div>
+          <div style="background:#f0ede8;border-radius:4px;height:8px;overflow:hidden;">
+            <div style="height:100%;width:${pct}%;background:${s.best===overallBest?'#c97b6e':'#7eb8a4'};border-radius:4px;transition:width 0.4s;"></div>
+          </div>
+        </div>`;
+      }).join('');
+      return `<div style="margin-bottom:20px;">
+        <div style="font-weight:700;font-size:13px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #f0ede8;">${name}</div>
+        ${bars}
+      </div>`;
+    }).join('');
+  }
+}
+function closeProgress(e) { if(e.target===document.getElementById('progress-modal')) closeProgressModal(); }
+function closeProgressModal() { document.getElementById('progress-modal').style.display='none'; }
+
+function renderTips() {
+  document.getElementById('tips-grid').innerHTML = data.tips.map(t => `
+    <div class="tip-card">
+      <div class="tip-icon">${t.icon}</div>
+      <div class="tip-title">${t.title}</div>
+      <div class="tip-text">${t.text}</div>
+    </div>`).join('');
+}
+
+// --- INTERACTIONS ---
+function selectPhase(i) {
+  activePhase = i; activeWeek = 0; activeDay = 0;
+  renderAll();
+}
+function selectWeek(i) {
+  activeWeek = i; activeDay = 0;
+  renderWeekBar();
+  renderContent();
+}
+function selectDay(i) {
+  activeDay = i;
+  renderContent();
+}
+
+// --- INIT ---
+renderAll();
+renderTips();
+</script>
+</body>
+</html>

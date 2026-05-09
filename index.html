@@ -907,6 +907,16 @@ const data = {
 // --- STATE ---
 let activePhase = 0, activeWeek = 0, activeDay = 0;
 
+// Expand weeks_data so every week has a days array.
+// Weeks with only a `note` inherit days from the first detailed week in their phase,
+// but keep their own week number (used as part of storage keys).
+data.phases.forEach(ph => {
+  const templateDays = ph.weeks_data.find(w => w.days)?.days || [];
+  ph.weeks_data.forEach(w => {
+    if (!w.days) w.days = templateDays;
+  });
+});
+
 // --- STORAGE ---
 // Key format: "wl_{phase}_{weekIdx}_{dayIdx}_{exIdx}_{setIdx}"
 function storageKey(phaseIdx, weekIdx, dayIdx, exIdx, setIdx) {
@@ -978,7 +988,7 @@ function color() { return PHASE_COLORS[activePhase]; }
 function bg() { return PHASE_BG[activePhase]; }
 function phase() { return data.phases[activePhase]; }
 function week() { return phase().weeks_data[activeWeek]; }
-function dayData() { const w = week(); return w.days ? w.days[activeDay] : null; }
+function dayData() { return week().days[activeDay]; }
 function slugEx(name) { return name.replace(/[^a-z0-9]/gi,'_').toLowerCase(); }
 
 // --- RENDER ---
@@ -1020,12 +1030,9 @@ function renderWeekBar() {
   const el = document.getElementById('week-bar');
   el.innerHTML = phase().weeks_data.map((w, i) => {
     const isDeload = w.week===4||w.week===8||w.week===12;
-    // Show logged indicator dots for days that have data
-    let dots = '';
-    if (w.days) {
-      const loggedDays = w.days.filter((_,di) => hasAnyLog(activePhase,i,di)).length;
-      if (loggedDays) dots = `<div style="margin-top:3px;font-size:9px;color:${i===activeWeek?'rgba(255,255,255,0.8)':'#7EB8A4'}">● ${loggedDays}/${w.days.filter(d=>d.day!=='Sunday').length} logged</div>`;
-    }
+    const loggedDays = w.days.filter((_,di) => hasAnyLog(activePhase,i,di)).length;
+    const totalTrainingDays = w.days.filter(d=>d.day!=='Sunday').length;
+    const dots = loggedDays ? `<div style="margin-top:3px;font-size:9px;color:${i===activeWeek?'rgba(255,255,255,0.8)':'#7EB8A4'}">● ${loggedDays}/${totalTrainingDays} logged</div>` : '';
     return `<button class="week-btn ${i===activeWeek?'active':''}"
       style="${i===activeWeek ? `background:${color()};border-color:${color()}` : ''}"
       onclick="selectWeek(${i})">
@@ -1038,34 +1045,32 @@ function renderWeekBar() {
 
 function renderContent() {
   const w = week();
-  const hasDetailed = !!w.days;
-  const dt = dayData();
+  const dt = w.days[activeDay];
 
+  // Day tabs — always shown
   const dayTabsEl = document.getElementById('day-tabs');
-  if (hasDetailed) {
-    dayTabsEl.innerHTML = w.days.map((d, i) => {
-      const logged = hasAnyLog(activePhase, activeWeek, i);
-      return `<button class="day-btn ${i===activeDay?'active':''}"
-        style="${i===activeDay ? `background:${color()};border-color:${color()}` : ''}"
-        onclick="selectDay(${i})">${d.day}${logged?` <span style="font-size:9px;opacity:0.7">●</span>`:''}
-      </button>`;
-    }).join('');
-    dayTabsEl.classList.remove('hidden');
-  } else {
-    dayTabsEl.classList.add('hidden');
-  }
+  dayTabsEl.innerHTML = w.days.map((d, i) => {
+    const logged = hasAnyLog(activePhase, activeWeek, i);
+    return `<button class="day-btn ${i===activeDay?'active':''}"
+      style="${i===activeDay ? `background:${color()};border-color:${color()}` : ''}"
+      onclick="selectDay(${i})">${d.day}${logged?` <span style="font-size:9px;opacity:0.7">●</span>`:''}
+    </button>`;
+  }).join('');
+  dayTabsEl.classList.remove('hidden');
 
   const dayViewEl = document.getElementById('day-view');
-  if (hasDetailed && dt) {
-    dayViewEl.innerHTML = buildDayCard(dt);
-    restoreInputValues();
-  } else if (!hasDetailed) {
-    dayViewEl.innerHTML = `
-      <div class="note-card" style="border-color:${color()}">
-        <div class="note-label" style="color:${color()}">Week ${w.week} — Progression Notes</div>
-        <p>${w.note}</p>
-      </div>`;
-  }
+  // Progression note banner (for weeks 2+ that have a note)
+  const noteBanner = w.note ? `
+    <div style="background:#fffbf0;border:1.5px solid #e8d8a0;border-radius:8px;padding:12px 16px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start;">
+      <span style="font-size:16px;flex-shrink:0;">📋</span>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b8903a;margin-bottom:4px;">Week ${w.week} Progression Note</div>
+        <div style="font-size:13px;color:#6a5020;line-height:1.6;">${w.note}</div>
+      </div>
+    </div>` : '';
+
+  dayViewEl.innerHTML = noteBanner + buildDayCard(dt);
+  restoreInputValues();
 }
 
 function buildDayCard(dt) {

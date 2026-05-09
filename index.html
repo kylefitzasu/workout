@@ -283,6 +283,34 @@
   }
   .ex-name-btn:hover { text-decoration-color: var(--warm-green); color: var(--warm-green); }
 
+  /* COOLDOWN SECTION */
+  .section-bar.cooldown-bar {
+    background: #f3f0fc;
+    border-color: #d8d0f0;
+  }
+  .section-bar.cooldown-bar .bar-title { color: #7060b0; }
+  .section-bar.cooldown-bar .bar-sub { font-size: 11px; color: #888; margin-left: 4px; }
+  .section-bar.golf-bar {
+    background: #f0f7ed;
+    border-color: #c8e0bf;
+  }
+  .section-bar.golf-bar .bar-title { color: #3d7a30; }
+  .ex-table.cooldown-tbl thead tr { background: #f8f6fd; border-color: #ddd8f4; }
+  .ex-table.cooldown-tbl th { color: #9080c0; }
+  .ex-table.cooldown-tbl tbody tr:nth-child(even) { background: #fbfaff; border-color: #ede8f8; }
+  .ex-table.cooldown-tbl tbody tr:nth-child(odd) { background: #fff; border-color: #ede8f8; }
+  .ex-table.cooldown-tbl .col-name { font-weight: 600; color: #5048a0; }
+  .ex-table.cooldown-tbl .col-dur { font-weight: 600; color: #7060b0; }
+  .stretch-benefit {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 1px 7px; border-radius: 8px; margin-left: 6px;
+    background: #f0f7ed; color: #3d7a30; vertical-align: middle;
+  }
+  .stretch-benefit.back { background: #fdf6ec; color: #9a6a20; }
+  .stretch-benefit.golf { background: #f0f7ed; color: #3d7a30; }
+  .stretch-benefit.hip { background: #f3f0fc; color: #7060b0; }
+
   .overflow-x { overflow-x: auto; }
   .hidden { display: none !important; }
 
@@ -416,7 +444,7 @@
 <header id="site-header">
   <div class="eyebrow">Home Gym Program</div>
   <h1>12-Week Tone &amp; Sculpt</h1>
-  <div class="subtitle">Ankle &amp; Lower Back Adapted &nbsp;·&nbsp; Chest Focused &nbsp;·&nbsp; 3 Phases &nbsp;·&nbsp; 6 Days/Week</div>
+  <div class="subtitle">Ankle &amp; Lower Back Adapted &nbsp;·&nbsp; Chest Focused &nbsp;·&nbsp; Golf Mobility &nbsp;·&nbsp; 3 Phases · 7 Days</div>
 </header>
 
 <div id="phase-tabs"></div>
@@ -472,6 +500,53 @@
 const PHASE_COLORS = ["#7EB8A4","#D4A76A","#C97B6E"];
 const PHASE_BG = ["#f0faf6","#fdf6ec","#fdf2f0"];
 
+// --- SHARED COOLDOWN ROUTINE ---
+// hip-focused, back-decompressing. Included on every training day.
+const COOLDOWN_STANDARD = [
+  {name:"90/90 Hip Stretch", duration:"60 sec/side", benefit:"hip", notes:"Seated on floor, front shin parallel, rear shin to side. Sit tall — don't round. Best hip opener for back pain relief."},
+  {name:"Pigeon Pose (modified on back)", duration:"60 sec/side", benefit:"hip", notes:"Lie on back, cross ankle over opposite knee, pull both legs to chest. Safe for all — zero lower back load."},
+  {name:"Hip Flexor Lunge Stretch (left leg only deep)", duration:"45 sec/side", benefit:"hip", notes:"Right knee down gently. Tight hip flexors pull on the lumbar spine — releasing them reduces back pain directly."},
+  {name:"Supine Knee-to-Chest", duration:"30 sec/side, then both", benefit:"back", notes:"Gentle lumbar decompression. Hold each knee individually, then both together. Breathe into lower back."},
+  {name:"Figure-4 Glute Stretch (supine)", duration:"60 sec/side", benefit:"hip", notes:"Lie on back, cross ankle over knee, pull toward chest. Targets piriformis — a key back pain driver when tight."},
+  {name:"Cat-Cow (slow, breath-led)", duration:"10 slow reps", benefit:"back", notes:"One rep per breath. Mobilizes entire spine after loading. Non-negotiable for lower back health."},
+  {name:"Thoracic Rotation (seated or lying)", duration:"8 reps/side", benefit:"golf", notes:"Sit cross-legged, hands behind head, rotate open. T-spine rotation = more shoulder turn = less back compensation in the swing."},
+  {name:"Child's Pose with Reach", duration:"45 sec hold", benefit:"back", notes:"Reach arms long overhead, feel lat and lumbar stretch. Holds the decompression achieved during the workout."},
+];
+
+const COOLDOWN_GOLF_DAY = [
+  {name:"Standing Hip Circle (slow, large)", duration:"15 reps each direction", benefit:"golf", notes:"Hands on hips, slow deliberate circles. Mobilizes the hip joint in all planes — directly improves weight transfer in the swing."},
+  {name:"90/90 Hip Stretch", duration:"90 sec/side", benefit:"hip", notes:"Longer hold on golf day — trail hip (right) especially important for backswing depth."},
+  {name:"Hip Flexor Lunge Stretch", duration:"60 sec/side", benefit:"hip", notes:"Tight hip flexors restrict the hip turn, forcing your back to compensate. Releasing them is the #1 way to free up your swing."},
+  {name:"Pigeon Pose (modified on back)", duration:"60 sec/side", benefit:"hip", notes:"Focus on the trail side (right) — this is the side that limits backswing."},
+  {name:"Thoracic Rotation + Club Overhead", duration:"10 reps/side", benefit:"golf", notes:"Hold a club horizontally overhead, seated. Rotate fully each side. Directly trains the shoulder turn independent of hip movement."},
+  {name:"Standing Side Bend (club overhead)", duration:"30 sec/side", benefit:"golf", notes:"Feet hip-width, reach club overhead, lateral bend each way. Lengthens the side body — improves finish position."},
+  {name:"Glute Foam Roll (or lacrosse ball)", duration:"60 sec/side", benefit:"hip", notes:"Sit on roller, cross one ankle over knee, roll the glute. Tight glutes compress the hip joint and rotate the pelvis — fixing this directly helps back pain AND swing path."},
+  {name:"Cat-Cow (slow)", duration:"12 slow reps", benefit:"back", notes:"Wind down the spine after a round or range session."},
+  {name:"Supine Spinal Twist", duration:"45 sec/side", benefit:"back", notes:"Lie on back, pull one knee across body, look the other way. Rotational decompression — feels incredible after 18 holes."},
+  {name:"Happy Baby Pose", duration:"60 sec", benefit:"hip", notes:"Lie on back, grab outer feet, pull knees to armpits. Opens hips and inner groins in one — decompresses the whole lumbar-hip complex."},
+];
+
+const GOLF_MOBILITY_DAY = {
+  day: "Sunday",
+  label: "Golf Mobility & Hip Freedom",
+  cardio: "Optional: 10–20 min easy Spin Bike before stretching",
+  isGolfDay: true,
+  warmup: null,
+  exercises: [
+    {name:"Golf Swing Hip Rotation Drill", sets:"3", reps:"10/side", notes:"Stand in golf posture, club across chest, rotate back and through. Feel hips leading — not arms."},
+    {name:"Standing Hip Circle (slow)", sets:"3", reps:"15 each direction", notes:"Large, deliberate circles — full hip joint mobilization. The #1 drill for freeing up the swing."},
+    {name:"Hip 90/90 Transitions", sets:"3", reps:"8 transitions", notes:"Sit in 90/90, rotate to opposite 90/90 without using hands. Builds active hip mobility — not just passive stretch."},
+    {name:"Half-Kneeling Hip Flexor Stretch + Reach", sets:"3", reps:"45 sec/side", notes:"In lunge position, posteriorly tilt pelvis, reach same-arm overhead and slightly back. Lengthens hip flexor AND opens thoracic in one movement."},
+    {name:"Thoracic Rotation (hands behind head)", sets:"3", reps:"10/side", notes:"Seated or kneeling. Keep hips still, rotate only from mid-back. Builds the shoulder turn your swing needs."},
+    {name:"Wall Hip Flexor Mobilization", sets:"3", reps:"45 sec/side", notes:"Rear knee on floor, front foot against wall. Drive knee toward wall to load hip flexor. Combines stretch with neurological reset."},
+    {name:"Standing Adductor Rock (wide stance)", sets:"3", reps:"10/side", notes:"Wide stance, hands on knees, rock side to side loading each inner thigh. Opens adductors — often the hidden cause of hip restriction in the golf swing."},
+    {name:"Lateral Band Walk (monster walk)", sets:"3", reps:"15 steps/side", notes:"Band at ankles, stay low. Activates glute med — stabilizes the hip and prevents the lateral slide that kills swing path."},
+    {name:"Single-Leg Balance (left leg, eyes closed)", sets:"3", reps:"30 sec", notes:"Left leg only (right ankle protected). Golf is a single-leg sport at impact — build that proprioception."},
+    {name:"Supine Figure-4 Glute Stretch", sets:"2", reps:"90 sec/side", notes:"Long hold. Piriformis release is the fastest way to feel hip freedom and back relief simultaneously."},
+  ],
+  cooldown: COOLDOWN_GOLF_DAY,
+};
+
 const data = {
   phases: [
     {
@@ -495,7 +570,8 @@ const data = {
               {name:"DB Chest Fly (flat bench)", sets:"3", reps:"14", notes:"Light weight, deep stretch at bottom, squeeze at top"},
               {name:"Dip Bar Dips (chest-forward lean)", sets:"3", reps:"10", notes:"Lean torso forward to hit lower chest, not just triceps"},
               {name:"Band Pull-Apart", sets:"3", reps:"20", notes:"Scapular health — balances all the pressing"},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Tuesday", label:"Lower Body – Squat Focus", cardio:"5 min Ski Row warm-up",
             warmup:[
@@ -513,7 +589,8 @@ const data = {
               {name:"Banded Clamshell", sets:"3", reps:"15/side", notes:"Glute activation"},
               {name:"Standing Calf Raise (left dominant)", sets:"3", reps:"15", notes:"Go easy on right ankle"},
               {name:"Dead Bug", sets:"3", reps:"8/side", notes:"Core stability, back-safe"},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Wednesday", label:"Cardio + Core", cardio:"20 min Spin Bike (Zone 2)",
             warmup:[
@@ -529,7 +606,8 @@ const data = {
               {name:"Pallof Press (band)", sets:"3", reps:"12/side", notes:"Anti-rotation core"},
               {name:"Glute Bridge", sets:"3", reps:"15", notes:"Drive hips, squeeze glutes"},
               {name:"Side Plank (modified if needed)", sets:"3", reps:"20 sec/side", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Thursday", label:"Upper Body – Pull", cardio:"10 min Ski Row warm-up",
             warmup:[
@@ -547,7 +625,8 @@ const data = {
               {name:"Band Face Pull", sets:"3", reps:"15", notes:"Shoulder health — essential to balance chest volume"},
               {name:"Dumbbell Shrug", sets:"3", reps:"15", notes:"Upper traps"},
               {name:"Landmine Press (single-arm)", sets:"3", reps:"12/side", notes:"Chest & anterior delt finisher — safe on lower back"},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Friday", label:"Lower Body – Hinge Focus", cardio:"5 min Spin Bike",
             warmup:[
@@ -565,7 +644,8 @@ const data = {
               {name:"Lying Dumbbell Hamstring Curl", sets:"3", reps:"12", notes:"On bench, prone"},
               {name:"Band Walk (lateral)", sets:"3", reps:"15/side", notes:"Hip abductor"},
               {name:"Reverse Hyper on Bench", sets:"3", reps:"15", notes:"Lower back decompression"},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Saturday", label:"Active Recovery + Conditioning", cardio:"25 min Ski Row (easy pace) or Spin Bike",
             warmup:[
@@ -577,11 +657,10 @@ const data = {
               {name:"Foam Roll / Stretch", sets:"—", reps:"10 min", notes:"Hips, quads, calves (avoid forcing right ankle)"},
               {name:"Band Shoulder Rotations", sets:"2", reps:"15/side", notes:""},
               {name:"90/90 Hip Stretch", sets:"2", reps:"60 sec/side", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
-          { day:"Sunday", label:"Rest", cardio:"—",
-            exercises:[{name:"Full Rest or light walk", sets:"—", reps:"—", notes:"Recovery is where muscle is built"}]
-          },
+          GOLF_MOBILITY_DAY,
         ]},
         {week:2, note:"Same structure as Week 1. Add 5 lbs to flat and incline DB press. Focus on feeling the chest stretch at the bottom of every rep — not just moving weight."},
         {week:3, note:"Same structure. Add 3-sec eccentric (lowering) on all chest presses — time under tension is key for chest growth. Try adding 5 lbs to flies too."},
@@ -609,7 +688,8 @@ const data = {
               {name:"Superset B2: Band Pull-Apart", sets:"4", reps:"20", notes:"No rest — rear delt health between chest sets"},
               {name:"Superset C1: Decline DB Press", sets:"3", reps:"12", notes:"Lower chest — lean forward on decline"},
               {name:"Superset C2: Dip Bar Dips (chest lean)", sets:"3", reps:"10", notes:"Forward lean to target lower chest — no rest"},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Tuesday", label:"Lower Body – Supersets", cardio:"5 min Ski Row",
             warmup:[
@@ -627,7 +707,8 @@ const data = {
               {name:"Superset B2: Banded Clamshell", sets:"3", reps:"15/side", notes:""},
               {name:"Low Box Step-Up", sets:"3", reps:"10/side", notes:"Controlled descent on right"},
               {name:"Dead Bug", sets:"3", reps:"10/side", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Wednesday", label:"HIIT Cardio + Core", cardio:"20 min Ski Row (30 sec hard / 60 sec easy)",
             warmup:[
@@ -642,7 +723,8 @@ const data = {
               {name:"Pallof Press", sets:"3", reps:"15/side", notes:""},
               {name:"Single-leg Glute Bridge (left focus)", sets:"3", reps:"12/side", notes:""},
               {name:"Reverse Hyper on Bench", sets:"3", reps:"15", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Thursday", label:"Upper Body – Pull (Supersets)", cardio:"10 min Spin Bike",
             warmup:[
@@ -659,7 +741,8 @@ const data = {
               {name:"Superset B2: DB Hammer Curl", sets:"3", reps:"12", notes:""},
               {name:"Incline DB Curl", sets:"3", reps:"12", notes:"Full stretch at bottom"},
               {name:"DB Shrug", sets:"3", reps:"15", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Friday", label:"Lower Body – Hinge Supersets", cardio:"5 min warm-up",
             warmup:[
@@ -678,16 +761,18 @@ const data = {
               {name:"Decline DB Press", sets:"3", reps:"12", notes:"Lower chest finisher — lean forward, elbows at 45°"},
               {name:"DB Chest Fly (flat or decline)", sets:"2", reps:"15", notes:"Bonus chest stretch & squeeze to end the week"},
               {name:"Core: Side Plank", sets:"3", reps:"30 sec/side", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Saturday", label:"Steady Cardio + Mobility", cardio:"30 min Spin Bike (Zone 2)",
             exercises:[
               {name:"Hip Flexor Stretch", sets:"2", reps:"60 sec/side", notes:""},
               {name:"Pigeon Pose (modified)", sets:"2", reps:"60 sec/side", notes:""},
               {name:"Ankle circles (left ankle full, right gentle)", sets:"2", reps:"10/direction", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
-          { day:"Sunday", label:"Rest", cardio:"—", exercises:[{name:"Full Rest", sets:"—", reps:"—", notes:""}] },
+          GOLF_MOBILITY_DAY,
         ]},
         {week:6, note:"Same superset structure. Increase flat DB press and fly weights by 5 lbs. On the chest-to-fly supersets, pause 1 sec at the stretch point of the fly — this triggers more growth."},
         {week:7, note:"Increase superset pace. Add a 4th set to the flat press/fly superset. For chest flys: go 20 sec hard / 40 sec easy on the cardio to pair with chest-focused days."},
@@ -715,7 +800,8 @@ const data = {
               {name:"DB Chest Fly – flat (drop set)", sets:"3", reps:"12→15", notes:"Deep stretch at bottom, squeeze hard at top"},
               {name:"Dip Bar Dips (chest-forward, weighted if able)", sets:"3", reps:"10", notes:"Lean forward, feel lower chest — add weight via belt or hold DB"},
               {name:"Band Chest Fly (standing)", sets:"3", reps:"20", notes:"Burnout — light band, constant tension throughout"},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Tuesday", label:"Lower Body – Circuit", cardio:"5 min Ski Row",
             warmup:[
@@ -733,7 +819,8 @@ const data = {
               {name:"→ Band Walk", sets:"—", reps:"15/side", notes:""},
               {name:"→ DB RDL", sets:"—", reps:"12", notes:""},
               {name:"→ Dead Bug", sets:"—", reps:"10/side", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Wednesday", label:"Cardio – Ski Row Intervals", cardio:"5 min easy → 6× (90 sec hard / 90 sec easy) → 5 min easy",
             warmup:[
@@ -749,7 +836,8 @@ const data = {
               {name:"→ Side Plank R", sets:"—", reps:"20 sec", notes:""},
               {name:"→ Side Plank L", sets:"—", reps:"20 sec", notes:""},
               {name:"→ Bird Dog", sets:"—", reps:"10/side", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Thursday", label:"Upper Pull – Drop Sets", cardio:"10 min Ski Row warm-up",
             warmup:[
@@ -766,7 +854,8 @@ const data = {
               {name:"Incline DB Curl (drop set)", sets:"3", reps:"10→15", notes:""},
               {name:"Band Face Pull", sets:"3", reps:"20", notes:"Burnout"},
               {name:"DB Shrug", sets:"3", reps:"15", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Friday", label:"Full Body Circuit", cardio:"5 min warm-up",
             warmup:[
@@ -786,12 +875,14 @@ const data = {
               {name:"→ Goblet Squat w/ Wedge", sets:"—", reps:"12", notes:""},
               {name:"→ Dip Bar Dips (chest lean)", sets:"—", reps:"10", notes:"Lean forward for lower chest"},
               {name:"→ Pallof Press", sets:"—", reps:"12/side", notes:""},
-            ]
+            ],
+            cooldown: COOLDOWN_STANDARD,
           },
           { day:"Saturday", label:"Spin Bike Endurance", cardio:"35–40 min Spin Bike (Zone 2)",
-            exercises:[{name:"Full mobility routine", sets:"—", reps:"15 min", notes:"Hips, hamstrings, shoulders, ankle"}]
+            exercises:[{name:"Full mobility routine", sets:"—", reps:"15 min", notes:"Hips, hamstrings, shoulders, ankle"}],
+            cooldown: COOLDOWN_STANDARD,
           },
-          { day:"Sunday", label:"Rest", cardio:"—", exercises:[{name:"Full Rest", sets:"—", reps:"—", notes:""}] },
+          GOLF_MOBILITY_DAY,
         ]},
         {week:10, note:"Increase drop set weight on flat DB press by 5 lbs per drop tier. Add a 5th round to Friday's full-body circuit. Cardio intervals up to 2 min hard / 90 sec easy."},
         {week:11, note:"Peak intensity week. Push every chest set to within 1 rep of failure. Keep rest between chest sets to 60–75 sec. Sleep and protein are non-negotiable."},
@@ -802,6 +893,8 @@ const data = {
   tips:[
     {icon:"🦶", title:"Right Ankle", text:"Always use the wedge for squats. Avoid single-leg work on right side under load. Step-ups: lead with left leg down."},
     {icon:"🔙", title:"Lower Back", text:"Never round your back on hinges. Use landmine variations as a safer barbell alternative. Reverse hypers help decompress the spine."},
+    {icon:"🦵", title:"Hip → Back Connection", text:"Tight hips force your lower back to compensate — in the gym AND on the course. 10 min of hip cooldown after every session is the single best thing you can do for back pain."},
+    {icon:"⛳", title:"Golf Sunday", text:"Sunday is your golf mobility day. Even on weeks you play a round, do the hip drills and cool-down. Thoracic rotation and hip freedom compound — you'll feel it in your swing by week 4."},
     {icon:"💪", title:"Chest Growth", text:"Hit all 3 angles every Monday — flat (mid chest), incline (upper), decline/dips (lower). Stretch deep at the bottom of every fly. 3-sec eccentric on presses = more growth."},
     {icon:"⚖️", title:"Push/Pull Balance", text:"For every chest pressing set, you're doing a pulling set (rows, face pulls). This protects shoulders and prevents posture issues from heavy chest work."},
     {icon:"💧", title:"Nutrition", text:"For toning with chest growth: keep protein at 0.8–1g per lb bodyweight. Chest needs protein to rebuild — prioritize it on push days."},
@@ -1066,6 +1159,105 @@ function buildDayCard(dt) {
   const cardioLine = dt.cardio && dt.cardio !== '—' ? `
     <div class="cardio-line"><span style="color:${color()}">🚴</span> ${dt.cardio}</div>` : '';
 
+  // GOLF DAY special layout
+  if (dt.isGolfDay) {
+    const exRows = dt.exercises.map((ex, exIdx) => {
+      const nameClass = 'col-name';
+      return `<tr style="border-bottom:1px solid #e8f0e4;background:${exIdx%2===0?'#fff':'#f8faf6'}">
+        <td class="${nameClass}" style="padding:10px 12px;">
+          <button class="ex-name-btn" onclick="openDemo('${ex.name.replace(/'/g,"\\'")}')">${ex.name}</button>
+        </td>
+        <td style="padding:10px 12px;color:#555;">${ex.sets}</td>
+        <td style="color:#3d7a30;font-weight:600;padding:10px 12px;">${ex.reps}</td>
+        <td style="font-size:12px;font-style:italic;color:#777;padding:10px 12px;">${ex.notes}</td>
+      </tr>`;
+    }).join('');
+
+    const cooldownRows = dt.cooldown.map(s => {
+      const benefitLabel = s.benefit === 'hip' ? `<span class="stretch-benefit hip">🦵 Hip</span>` :
+                           s.benefit === 'back' ? `<span class="stretch-benefit back">🔙 Back</span>` :
+                           `<span class="stretch-benefit golf">⛳ Swing</span>`;
+      return `<tr style="border-bottom:1px solid #f0f7ed;background:#fff;">
+        <td class="col-name" style="padding:10px 12px;color:#5048a0;font-weight:600;">
+          <button class="ex-name-btn" style="color:#5048a0;font-weight:600;" onclick="openDemo('${s.name.replace(/'/g,"\\'")}')">${s.name}</button>${benefitLabel}
+        </td>
+        <td style="color:#7060b0;font-weight:600;padding:10px 12px;">${s.duration}</td>
+        <td style="font-size:12px;font-style:italic;color:#777;padding:10px 12px;" colspan="2">${s.notes}</td>
+      </tr>`;
+    }).join('');
+
+    return `<div class="workout-card">
+      <div class="card-header" style="background:linear-gradient(135deg,#1a3a1a,#2d5a20);">
+        <div class="day-label" style="color:#8fcc70;">Sunday</div>
+        <h2>${dt.label}</h2>
+        ${cardioLine}
+      </div>
+      <div class="section-bar golf-bar" style="border-bottom:1px solid #c8e0bf;">
+        <span class="bar-icon">⛳</span>
+        <span class="bar-title" style="color:#3d7a30;">Golf Mobility Drills</span>
+        <span style="font-size:11px;color:#888;margin-left:4px;">Hip freedom · Swing rotation · Back health</span>
+      </div>
+      <div class="overflow-x">
+        <table class="ex-table main-tbl" style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="background:#f0f7ed;border-bottom:1px solid #c8e0bf;">
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#3d7a30;">Drill</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#3d7a30;">Sets</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#3d7a30;">Reps</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#3d7a30;">Notes</th>
+          </tr></thead>
+          <tbody>${exRows}</tbody>
+        </table>
+      </div>
+      <div class="section-bar cooldown-bar" style="border-color:#d8d0f0;">
+        <span class="bar-icon">🧘</span>
+        <span class="bar-title">Golf Cool-Down Stretch</span>
+        <span class="bar-sub">Extended hip & rotation release</span>
+      </div>
+      <div class="overflow-x">
+        <table class="ex-table cooldown-tbl" style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="background:#f8f6fd;border-bottom:1px solid #ddd8f4;">
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9080c0;">Stretch</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9080c0;">Duration</th>
+            <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9080c0;" colspan="2">Notes & Why It Helps</th>
+          </tr></thead>
+          <tbody>${cooldownRows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }
+
+  // Build cooldown section for regular days
+  const cooldownSection = dt.cooldown ? `
+    <div class="section-bar cooldown-bar">
+      <span class="bar-icon">🧘</span>
+      <span class="bar-title">Cool-Down Stretch</span>
+      <span class="bar-sub">~10 min · Hip-focused · Back decompression</span>
+    </div>
+    <div class="overflow-x">
+      <table class="ex-table cooldown-tbl" style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead><tr style="background:#f8f6fd;border-bottom:1px solid #ddd8f4;">
+          <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9080c0;">Stretch</th>
+          <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9080c0;">Duration</th>
+          <th style="padding:8px 12px;text-align:left;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9080c0;" colspan="2">Notes & Why It Helps</th>
+        </tr></thead>
+        <tbody>
+          ${dt.cooldown.map(s => {
+            const benefitLabel = s.benefit === 'hip' ? `<span class="stretch-benefit hip">🦵 Hip</span>` :
+                                 s.benefit === 'back' ? `<span class="stretch-benefit back">🔙 Back</span>` :
+                                 `<span class="stretch-benefit golf">⛳ Swing</span>`;
+            return `<tr style="border-bottom:1px solid #ede8f8;background:#fff;">
+              <td class="col-name" style="padding:10px 12px;color:#5048a0;font-weight:600;">
+                <button class="ex-name-btn" style="color:#5048a0;font-weight:600;" onclick="openDemo('${s.name.replace(/'/g,"\\'")}')">${s.name}</button>${benefitLabel}
+              </td>
+              <td style="color:#7060b0;font-weight:600;padding:10px 12px;">${s.duration}</td>
+              <td style="font-size:12px;font-style:italic;color:#777;padding:10px 12px;" colspan="2">${s.notes}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  ` : '';
+
   return `
     <div class="workout-card">
       <div class="card-header">
@@ -1085,6 +1277,7 @@ function buildDayCard(dt) {
           <tbody>${exRows}</tbody>
         </table>
       </div>
+      ${cooldownSection}
     </div>`;
 }
 
